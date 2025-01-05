@@ -20,6 +20,13 @@ log() {
     echo -e "${log_timestamp} [${red}ERROR${nc}] -- ${2}!"
     exit 1
     ;;
+  banner)
+    if command -v figlet &>/dev/null; then
+      figlet "${2}"
+    else
+      echo "[BANNER] -- ${2}"
+    fi
+    ;;
   *)
     echo -e "${log_timestamp} [UNKNOWN] -- INVALID LOG TYPE ${1}..."
     exit 1
