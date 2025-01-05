@@ -74,9 +74,6 @@ handle_debian() {
   if [ -z "${BASH}" ]; then
     log error "This script requires bash"
   fi
-
-  log info "Upgrading system"
-  apt-get update && apt-get upgrade -y
 }
 readonly -f handle_debian
 
