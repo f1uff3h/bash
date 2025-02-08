@@ -52,10 +52,14 @@ handle_log() {
 }
 readonly -f handle_log
 
-handle_error() {
+error_trap() {
   log error "An error occured on line ${1}: '${BASH_COMMAND}' exited with status code ${?}"
 }
 readonly -f handle_error
+
+handle_errors() {
+  trap 'error_trap $LINENO' ERR
+}
 
 handle_root() {
   if [ "${EUID}" != 0 ]; then
@@ -82,5 +86,3 @@ handle_debian() {
   fi
 }
 readonly -f handle_debian
-
-trap 'handle_error $LINENO' ERR
