@@ -65,6 +65,7 @@ readonly -f handle_errors
 handle_root() {
   if [ "${EUID}" != 0 ]; then
     log error "This script must be run as root"
+    exit 1
   fi
 }
 readonly -f handle_root
@@ -73,17 +74,8 @@ handle_environment() {
   for env_var in "${@}"; do
     if [ -z "${!env_var:-}" ]; then
       log error "Missing required environment variable ${env_var}"
+      exit 1
     fi
   done
 }
 readonly -f handle_environment
-
-handle_debian() {
-  if ! grep -q 'ID=debian' /etc/os-release; then
-    log error "Distribution not based on Debian"
-  fi
-  if [ -z "${BASH}" ]; then
-    log error "This script requires bash"
-  fi
-}
-readonly -f handle_debian
