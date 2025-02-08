@@ -55,7 +55,7 @@ readonly -f handle_log
 error_trap() {
   log error "An error occured on line ${1}: '${BASH_COMMAND}' exited with status code ${?}"
 }
-readonly -f handle_error
+readonly -f error_trap
 
 handle_errors() {
   trap 'error_trap $LINENO' ERR
