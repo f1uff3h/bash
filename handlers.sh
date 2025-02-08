@@ -60,6 +60,7 @@ readonly -f handle_error
 handle_errors() {
   trap 'error_trap $LINENO' ERR
 }
+readonly -f handle_errors
 
 handle_root() {
   if [ "${EUID}" != 0 ]; then
