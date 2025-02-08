@@ -18,7 +18,6 @@ log() {
     ;;
   error)
     echo -e "${log_timestamp} [${red}ERROR${nc}] -- ${2}!"
-    exit 1
     ;;
   banner)
     if command -v figlet &>/dev/null; then
